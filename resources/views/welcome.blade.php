@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
         <!-- Styles -->
         <style>
@@ -92,8 +93,20 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <button onclick="aa();">test</button>
+                    <form id="myform" method='post'  action="https://kreator.co.kr/develops/auth"  target="popup_window">
+                        @csrf
+                        <input type="hidden" class="textfield" name='return_url' value="http://hyun-test.localhost/test"><i class="bg_text"></i>
+                    </form>
                 </div>
             </div>
         </div>
+
+    <script>
+        function aa() {
+            window.open("", "popup_window", "width=500, height=300, scrollbars=no");
+            $("#myform").submit();
+        }
+    </script>
     </body>
 </html>
