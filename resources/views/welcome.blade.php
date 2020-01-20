@@ -84,29 +84,35 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                    <button onclick="aa();">test</button>
-                    <form id="myform" method='post'  action="https://kreator.co.kr/develops/auth"  target="popup_window">
+                    <button onclick="aa();">본인 인증하기</button>
+                    <form id="myform" method='post' action="https://kreator.co.kr/develops/auth"  target="popup_window">
                         @csrf
                         <input type="hidden" class="textfield" name='return_url' value="http://hyun-test.localhost/test"><i class="bg_text"></i>
                     </form>
-                </div>
             </div>
         </div>
 
     <script>
+        var d = "";
+        var a;
         function aa() {
-            window.open("", "popup_window", "width=500, height=300, scrollbars=no");
+            a = window.open("", "popup_window", "width=500, height=300, scrollbars=no");
             $("#myform").submit();
         }
+
+        function openerCallback(__data) {
+            console.log(1);
+            d = __data;
+            a.close();
+            alert(d);
+        }
+
+        @if (isset($ci)) {
+            var c = '{{ $ci }}';
+            // d = '{{ $ci }}';
+            window.opener.openerCallback(c);
+        }
+        @endif
     </script>
     </body>
 </html>
