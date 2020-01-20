@@ -11,17 +11,7 @@
 |
 */
 
-<<<<<<< Updated upstream
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::post("/test",'TestController@index');
-
-
-
-=======
 Route::get('/','MainController@index')->name("main.page");
 Route::post('/','MainController@index')->name("main.page");
-Route::post('/identity-check', 'MainController@certification')->name("identity.check");
->>>>>>> Stashed changes
+
+
