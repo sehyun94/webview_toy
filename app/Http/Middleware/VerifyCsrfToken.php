@@ -21,10 +21,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         'https://kreator.co.kr/*',
-<<<<<<< Updated upstream
-        '/test'
-=======
         '/'
->>>>>>> Stashed changes
     ];
 }
