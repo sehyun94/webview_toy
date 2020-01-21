@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>WEB VIEW</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -52,7 +52,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 30px;
             }
 
             .links > a {
@@ -68,6 +68,15 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .img_wrap {
+                width: 300px;
+                margin-top: 50px;
+            }
+
+            .img_wrap img {
+                max-width: 100%;
+            }
         </style>
     </head>
     <body>
@@ -77,7 +86,8 @@
                     App_Toy
                     <br>
                     By_hyun
-                </div>               
+                </div>
+                <div style="padding:3%">               
                 <form id="myform" method='post' action="https://kreator.co.kr/develops/auth"  target="popup_window">
                     @csrf
                     <input type="hidden" class="textfield" name='return_url' value="{{ route('main.page') }}"><i class="bg_text"></i>
@@ -85,11 +95,19 @@
                 <button onclick="popup_open()"; class="btn btn-default btn-lg">
                     <span>본인 인증하기</span> 
                 </button>
+                </div>
 
-                <a href="#" class="btn btn-default btn-lg">
-                    <span>이미지 첨부하기</span> 
-                </a>
+                <div class="custom-file" style="border:1px solid black">
+                    <input type="file" class="custom-file-input" id="input_img">
+                </div>
+                <div class="img_wrap">
+                    <img id="img_preview" />
+                </div>                
             </div>
+
+           
+                <!-- <a href="#" class="btn btn-default btn-lg">                    
+                </a> -->
         </div>
 
         <script>
@@ -108,26 +126,25 @@
                 window.opener.openerCallback('{{ $ci }}');
             }
             @endif
+            
+            $(document).ready(function () {
+                $('#input_img').on("change", handleImgFileSelect);
+            });
 
-       function call_regist() 
-        {
-            console.log(111);
-            data = {
-                name : 'test',
-                phone_number : '01012341234',
-                return_url : 'http://shoh.mmonstar.co.kr'
-            };
+            function handleImgFileSelect() 
+            {
+                
+                if ($('#input_img')[0].files) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        console.log(e);
+                        $('#img_preview').attr('src', e.target.result);  
+                    }
+                    reader.readAsDataURL($('#input_img')[0].files[0]);
+                }
+                
+            }
 
-            console.log(data);
-
-            axios.post('https://kreator.co.kr/develops/auth', data)            
-                .then (response => {
-                    console.log(response);
-                })
-                .catch( error => {
-                    console.log(error.response);
-                })
-        }
         </script>
     </body>
 
