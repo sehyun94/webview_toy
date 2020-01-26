@@ -16,10 +16,4 @@ class MainController extends Controller
         }
         return view('main', compact( "ci" ));
     }
-    
-    public function certification(Request $request) 
-    {
-        $ci = $request->input("ci");
-        //return $ci;
-    }
 }

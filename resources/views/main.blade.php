@@ -117,16 +117,18 @@
                 popup_selector = window.open("", "popup_window", "width=500, height=300, scrollbars=no");
                 $("#myform").submit();
             }
-            function openerCallback(__ci) {
+            function openerCallback(__ci, __result) {
                 identity_code = __ci;
-                popup_selector.close();
-                alert(identity_code);
+                if (__result) {
+                    popup_selector.close();
+                    alert(identity_code);
+                }
+                
             }
             @if (isset($ci) && $ci != "") {
-                window.opener.openerCallback('{{ $ci }}');
+                window.opener.openerCallback('{{ $ci }}', true);
             }
             @endif
-            
             $(document).ready(function () {
                 $('#input_img').on("change", handleImgFileSelect);
             });
